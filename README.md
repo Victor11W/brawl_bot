@@ -6,21 +6,44 @@ priority: the detection step.
 
 ## Pipeline
 
+### Work axes (3 groups)
+
 ```mermaid
 flowchart LR
-    A[LDPlayer 9<br/>Brawl Stars] -->|mss capture| B[Frame]
-    B -->|YOLOv11| C[Detections]
-    C --> D[Structured state]
-    D -->|RL policy| E[Action:<br/>direction + shoot]
-    E -->|ADB input| A
+    subgraph SIM[1. Game simulation and recording]
+        A[Emulator<br/>LDPlayer 9] --> B[Screen capture<br/>mss]
+    end
+    subgraph DET[2. Image detection]
+        C[Object detection<br/>YOLOv11] --> D[State restructuring]
+    end
+    subgraph AI[3. RL decision AI]
+        E[RL policy<br/>e.g. Q-learning]
+    end
+
+    B -->|frame| C
+    D -->|state| E
 ```
 
-1. LDPlayer 9 runs Brawl Stars at a fixed resolution, ADB enabled.
-2. `mss` captures the emulator window into a numpy frame.
-3. YOLOv11 (Ultralytics), trained on the Roboflow dataset, returns bounding boxes.
-4. Detections are converted into a structured state.
-5. RL policy maps the state to an action: a movement direction + shoot (yes/no).
-6. The action is injected back into LDPlayer via ADB (swipe = joystick, tap = shoot/super).
+### AI feedback loop
+
+```mermaid
+flowchart LR
+    F[Frame] -->|detection -> state| G[RL decision AI]
+    G -->|action: direction + shoot| H[ADB input]
+    H --> I[New frame]
+    I -->|reward signal| G
+    I --> F
+```
+
+The resulting frames provide the reward signal back to the AI.
+
+1. LDPlayer 9 runs Brawl Stars at a fixed resolution, ADB enabled; `mss`
+   captures the emulator window into a numpy frame.
+2. YOLOv11 (Ultralytics), trained on the Roboflow dataset, returns bounding
+   boxes; detections are restructured into a state.
+3. The RL policy maps the state to an action (a movement direction + shoot
+   yes/no); the action is injected back into LDPlayer via ADB (swipe =
+   joystick, tap = shoot/super).
 
 
 ## Libraries per step
@@ -45,6 +68,8 @@ Dataset: [bloxxy/brawl-stars-dataset](https://universe.roboflow.com/bloxxy/brawl
 
 - Input: full detected state (positions of all detected classes).
 - Output: a movement direction, plus a boolean action (shoot or not).
+- Theory not finalized yet. Q-learning was experimented with and is a
+  plausible candidate.
 
 ## Roadmap
 

@@ -40,7 +40,18 @@ Windows-only (no native macOS build; only a Windows VM workaround exists).
 
 - Input: full detected state.
 - Output: movement direction + boolean shoot action.
-- Candidate algorithm: PPO via Stable-Baselines3. Gymnasium environment wrapper.
+- Theory not finalized. Q-learning was experimented with and looks plausible.
+- Other candidate: PPO via Stable-Baselines3 with a Gymnasium environment
+  wrapper. To be compared once the state representation is fixed.
+
+## Work axes (three groups)
+
+1. Game simulation and recording: emulator (LDPlayer 9) + screen capture (mss).
+2. Image detection: YOLOv11 object detection + state restructuring.
+3. RL decision AI: policy mapping state to action.
+
+Closed action loop: frame -> detection -> state -> AI -> action -> new frame,
+where resulting frames provide the reward signal.
 
 ## Action / input injection
 
