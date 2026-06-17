@@ -1,0 +1,17 @@
+# Core RL
+torch
+stable-baselines3
+gymnasium
+
+# Vision
+ultralytics
+opencv-python
+numpy
+
+# Emulator interface
+pure-python-adb
+mss
+
+# Utilities
+pyyaml
+tensorboard

@@ -1,0 +1,26 @@
+# Claude local config
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Models and data
+data/models/*.pt
+data/models/*.pth
+data/captures/
+*.ckpt
+
+# Training artifacts
+runs/
+logs/
+*.tfevents.*
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
