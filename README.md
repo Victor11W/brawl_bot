@@ -1,8 +1,19 @@
 # BROWT
 
+[![Scientific documentation](https://img.shields.io/badge/docs-scientific%20report-1f6feb?style=for-the-badge)](https://victor11w.github.io/BROWT/)
+
 Brawl Stars bot trained with reinforcement learning. MVP target: Solo Showdown.
 Platform: Windows + NVIDIA GPU (CUDA). Large project, built step by step. Current
 priority: the detection step.
+
+> ## Full scientific documentation
+>
+> **A precise, structured scientific report — method and results — is published at**
+> **[victor11w.github.io/BROWT](https://victor11w.github.io/BROWT/)**.
+>
+> It documents the experimental approach and the evidence gathered at each stage
+> of the pipeline (perception, state, RL). **This is the primary reference for the
+> project** — the sections below are only a summary.
 
 ## Pipeline
 
@@ -94,4 +105,6 @@ pip install -r requirements.txt
 
 Also requires Android platform-tools (`adb`) and LDPlayer 9 with ADB enabled.
 
-See `docs/design.md` for the detailed design notes.
+Full method, results, and design rationale: the published documentation at
+**[victor11w.github.io/BROWT](https://victor11w.github.io/BROWT/)** (sources in
+`docs/`).
