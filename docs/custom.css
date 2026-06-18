@@ -1,0 +1,21 @@
+/* Minimal overrides on top of the Lux theme. */
+
+/* Slightly larger, more comfortable base type. */
+html {
+  font-size: 19px !important;
+}
+
+/* The logo already shows the brand name; hide the duplicate text title. */
+#quarto-sidebar .sidebar-title {
+  display: none;
+}
+
+/* Center mermaid diagrams. */
+pre.mermaid-js {
+  text-align: center;
+}
+pre.mermaid-js svg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,28 @@
+---
+title: "Roadmap"
+subtitle: "Study plan and progress"
+---
+
+## Stages and status
+
+| # | Stage | Status |
+|---|-------|--------|
+| 1 | Capture (emulator + frame grab) | Work in progress |
+| 2 | Perception (detection + state) | Under evaluation (priority) |
+| 3 | Decision (RL policy) | Work in progress |
+| 4 | Inputs + reward / training loop | Work in progress |
+
+Results for each stage are reported on its tab as they become available.
+
+## Open questions
+
+- **Static terrain.** The detector recovers mobile entities but not bushes or
+  walls. Whether static map layout can be sourced per map, rather than detected
+  from pixels, is open (see [Capture](capture.qmd)).
+- **Ban risk.** Emulator and automated play may be flagged by Supercell.
+  Tracked as a risk, not yet mitigated (see [Inputs](inputs.qmd)).
+
+## Data and licensing
+
+Dataset: [bloxxy/brawl-stars-dataset](https://universe.roboflow.com/bloxxy/brawl-stars-dataset)
+(10 classes, MIT). Project code is under the repository `LICENSE`.

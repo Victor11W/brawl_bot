@@ -1,0 +1,10 @@
+---
+title: "Capture"
+subtitle: "Game simulation and recording (axis 1)"
+---
+
+::: {.callout-warning}
+## Work in progress
+Results and method for this stage are not yet available. This page will be
+filled in as the work progresses.
+:::

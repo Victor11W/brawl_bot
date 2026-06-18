@@ -1,0 +1,65 @@
+---
+title: "Architecture"
+subtitle: "The method, end to end"
+---
+
+## The pipeline under study
+
+The agent is organised along **three stages** that turn a frame into an action.
+Each stage is evaluated on its own tab.
+
+```{mermaid}
+flowchart LR
+    subgraph SIM[1. Capture]
+        A[Emulator] --> B[Screen capture]
+    end
+    subgraph DET[2. Perception]
+        C[Object detection<br/>YOLOv11] --> D[State restructuring]
+    end
+    subgraph AI[3. Decision]
+        E[RL policy]
+    end
+
+    B -->|frame| C
+    D -->|state| E
+```
+
+At run time the stages form a **closed perception-action loop**: each action
+changes the game, producing the next frame, and the change in frames is the
+reward signal that trains the policy.
+
+```{mermaid}
+flowchart LR
+    F[Frame] -->|detection -> state| G[RL policy]
+    G -->|action: direction + shoot| H[Action in game]
+    H --> I[New frame]
+    I -->|reward signal| G
+    I --> F
+```
+
+## Stages
+
+1. **Capture.** The game runs in an emulator at a fixed resolution; frames are
+   grabbed from the window. See [Capture](capture.qmd).
+2. **Perception.** A YOLOv11 detector returns bounding boxes, which are
+   restructured into a state vector. See [Detection](detection.qmd) and
+   [State](state.qmd).
+3. **Decision.** A reinforcement-learning policy maps the state to an action
+   (movement direction + shoot), injected back into the game. See [RL](rl.qmd)
+   and [Inputs](inputs.qmd).
+
+## Materials
+
+| Stage | Method / tooling |
+|-------|------------------|
+| Capture | LDPlayer 9 emulator, frames via `mss` |
+| Perception | YOLOv11 (Ultralytics), trained on the Roboflow `bloxxy/brawl-stars-dataset` (10 classes, MIT) |
+| Decision | reinforcement learning (Q-learning / PPO, to be compared) |
+| Inputs | ADB (swipe for movement, tap to shoot) |
+
+## Why vision-only
+
+The agent is deliberately restricted to pixels, with no privileged access to
+game internals. This keeps the result a fair test of the central hypothesis —
+that perception accurate and stable enough to support a learned policy can be
+recovered from the screen alone.

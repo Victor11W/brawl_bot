@@ -1,0 +1,50 @@
+project:
+  type: book
+
+book:
+  title: "BROWT"
+  author: "Victor Woelffel"
+  date: today
+  repo-url: https://github.com/Victor11W/brawl_bot
+  sidebar:
+    logo: "assets/logo.png"
+
+  chapters:
+    - index.qmd
+    - architecture.qmd
+    - part: "Pipeline stages"
+      chapters:
+        - capture.qmd
+        - detection.qmd
+        - state.qmd
+        - rl.qmd
+        - inputs.qmd
+    - roadmap.qmd
+
+format:
+  html:
+    theme: flatly
+    css: custom.css
+    page-layout: article
+    grid:
+      sidebar-width: 220px
+      body-width: 1050px
+    mermaid:
+      theme: neutral
+
+    # Table of contents
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    toc-title: "On this page"
+    toc-expand: 1
+    number-sections: false
+
+    # Code display
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: false
+    code-copy: true
+    code-block-bg: true
+    code-overflow: wrap
+    highlight-style: github

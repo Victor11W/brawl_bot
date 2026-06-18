@@ -1,0 +1,49 @@
+---
+title: "BROWT"
+subtitle: "Learning to play Brawl Stars from pixels alone"
+---
+
+## Abstract
+
+This report documents the design and evaluation of an agent that plays Brawl
+Stars **using only what is on the screen** — no access to the game's internal
+state. A frame is captured, objects are detected, the detections are turned into
+a state, and a reinforcement-learning policy chooses an action that is sent back
+to the game. The change in the resulting frames is the reward.
+
+The aim of these pages is **scientific validation**: to expose the results
+obtained at each stage and the method used to obtain them, rather than to teach
+how to operate the tool.
+
+- **Task studied:** Solo Showdown (MVP scope).
+- **Approach:** perception (YOLOv11) → state → reinforcement learning, closed in
+  a perception-action loop.
+- **Status:** the perception stage is under evaluation; later stages are work in
+  progress and will be reported as results arrive.
+
+## Hypothesis
+
+A purely vision-based agent, with no privileged access to game internals, can
+learn a useful Solo Showdown policy if the perception stage produces a state
+that is accurate and stable enough for a reinforcement-learning policy to act
+on.
+
+## Method in one diagram
+
+```{mermaid}
+flowchart LR
+    F[Frame] -->|detection -> state| G[RL policy]
+    G -->|action| H[Game]
+    H --> F
+    H -.reward.-> G
+```
+
+Each stage is studied on its own tab: how it was built (method) and what it
+achieves (results). The [Architecture](architecture.qmd) tab gives the full
+picture; the per-stage tabs report the evidence.
+
+## How to read this report
+
+The tabs follow the perception-to-action pipeline. Stages still being evaluated
+are marked **work in progress** and will be filled in as their results become
+available.
