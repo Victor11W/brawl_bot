@@ -12,13 +12,28 @@ env/
 # Models and data
 data/models/*.pt
 data/models/*.pth
+data/dataset/*
 data/captures/
 *.ckpt
+*.png
+# Pretrained / auto-downloaded YOLO base weights
+yolo*.pt
+
+# Keep docs site assets despite the global *.png rule above.
+!docs/assets/*.png
+# ...but not the local-only original of the cropped logo.
+docs/assets/logo_original.png
+
 
 # Training artifacts
 runs/
 logs/
 *.tfevents.*
+
+# Quarto
+docs/_site/
+docs/_book/
+docs/.quarto/
 
 # OS / IDE
 .DS_Store

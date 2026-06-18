@@ -1,4 +1,4 @@
-# brawl_bot
+# BROWT
 
 Brawl Stars bot trained with reinforcement learning. MVP target: Solo Showdown.
 Platform: Windows + NVIDIA GPU (CUDA). Large project, built step by step. Current

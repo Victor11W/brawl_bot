@@ -1,0 +1,31 @@
+# Detection training configuration (YOLOv11 via Ultralytics).
+# All paths are relative to the repository root.
+
+model:
+  # Model size: n (nano) < s < m < l < x. Start with n for real-time inference.
+  size: n
+  # Optional path to a checkpoint to resume from. Empty -> start from the
+  # official pretrained yolo11<size>.pt weights.
+  pretrained: ""
+
+data:
+  root: data/dataset
+  # If no test split exists, carve this fraction out of the train split.
+  test_fraction: 0.1
+  # Seed used when carving the test split (deterministic).
+  split_seed: 0
+
+train:
+  epochs: 100
+  imgsz: 640
+  batch: 16          # AutoBatch (-1) only works on CUDA; keep fixed on MPS/CPU.
+  patience: 20       # Early stopping patience (epochs without improvement).
+  device: auto       # auto -> cuda > mps > cpu
+  workers: 8
+  seed: 0
+
+output:
+  project: runs/detect
+  name: brawl_yolo11n
+  # Best weights are copied here after training for use by the detector.
+  weights_dir: data/models
