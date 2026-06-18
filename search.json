@@ -1,0 +1,187 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BROWT",
+    "section": "",
+    "text": "Abstract\nThis report documents the design and evaluation of an agent that plays Brawl Stars using only what is on the screen — no access to the game’s internal state. A frame is captured, objects are detected, the detections are turned into a state, and a reinforcement-learning policy chooses an action that is sent back to the game. The change in the resulting frames is the reward.\nThe aim of these pages is scientific validation: to expose the results obtained at each stage and the method used to obtain them, rather than to teach how to operate the tool.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>BROWT</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "BROWT",
+    "section": "",
+    "text": "Task studied: Solo Showdown (MVP scope).\nApproach: perception (YOLOv11) → state → reinforcement learning, closed in a perception-action loop.\nStatus: the perception stage is under evaluation; later stages are work in progress and will be reported as results arrive.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>BROWT</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#hypothesis",
+    "href": "index.html#hypothesis",
+    "title": "BROWT",
+    "section": "Hypothesis",
+    "text": "Hypothesis\nA purely vision-based agent, with no privileged access to game internals, can learn a useful Solo Showdown policy if the perception stage produces a state that is accurate and stable enough for a reinforcement-learning policy to act on.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>BROWT</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#method-in-one-diagram",
+    "href": "index.html#method-in-one-diagram",
+    "title": "BROWT",
+    "section": "Method in one diagram",
+    "text": "Method in one diagram\n\n\n\n\n\nflowchart LR\n    F[Frame] --&gt;|detection -&gt; state| G[RL policy]\n    G --&gt;|action| H[Game]\n    H --&gt; F\n    H -.reward.-&gt; G\n\n\n\n\n\n\nEach stage is studied on its own tab: how it was built (method) and what it achieves (results). The Architecture tab gives the full picture; the per-stage tabs report the evidence.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>BROWT</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-read-this-report",
+    "href": "index.html#how-to-read-this-report",
+    "title": "BROWT",
+    "section": "How to read this report",
+    "text": "How to read this report\nThe tabs follow the perception-to-action pipeline. Stages still being evaluated are marked work in progress and will be filled in as their results become available.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>BROWT</span>"
+    ]
+  },
+  {
+    "objectID": "architecture.html",
+    "href": "architecture.html",
+    "title": "Architecture",
+    "section": "",
+    "text": "The pipeline under study\nThe agent is organised along three stages that turn a frame into an action. Each stage is evaluated on its own tab.\nflowchart LR\n    subgraph SIM[1. Capture]\n        A[Emulator] --&gt; B[Screen capture]\n    end\n    subgraph DET[2. Perception]\n        C[Object detection&lt;br/&gt;YOLOv11] --&gt; D[State restructuring]\n    end\n    subgraph AI[3. Decision]\n        E[RL policy]\n    end\n\n    B --&gt;|frame| C\n    D --&gt;|state| E\nAt run time the stages form a closed perception-action loop: each action changes the game, producing the next frame, and the change in frames is the reward signal that trains the policy.\nflowchart LR\n    F[Frame] --&gt;|detection -&gt; state| G[RL policy]\n    G --&gt;|action: direction + shoot| H[Action in game]\n    H --&gt; I[New frame]\n    I --&gt;|reward signal| G\n    I --&gt; F",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "architecture.html#stages",
+    "href": "architecture.html#stages",
+    "title": "Architecture",
+    "section": "Stages",
+    "text": "Stages\n\nCapture. The game runs in an emulator at a fixed resolution; frames are grabbed from the window. See Capture.\nPerception. A YOLOv11 detector returns bounding boxes, which are restructured into a state vector. See Detection and State.\nDecision. A reinforcement-learning policy maps the state to an action (movement direction + shoot), injected back into the game. See RL and Inputs.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "architecture.html#materials",
+    "href": "architecture.html#materials",
+    "title": "Architecture",
+    "section": "Materials",
+    "text": "Materials\n\n\n\n\n\n\n\nStage\nMethod / tooling\n\n\n\n\nCapture\nLDPlayer 9 emulator, frames via mss\n\n\nPerception\nYOLOv11 (Ultralytics), trained on the Roboflow bloxxy/brawl-stars-dataset (10 classes, MIT)\n\n\nDecision\nreinforcement learning (Q-learning / PPO, to be compared)\n\n\nInputs\nADB (swipe for movement, tap to shoot)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "architecture.html#why-vision-only",
+    "href": "architecture.html#why-vision-only",
+    "title": "Architecture",
+    "section": "Why vision-only",
+    "text": "Why vision-only\nThe agent is deliberately restricted to pixels, with no privileged access to game internals. This keeps the result a fair test of the central hypothesis — that perception accurate and stable enough to support a learned policy can be recovered from the screen alone.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Architecture</span>"
+    ]
+  },
+  {
+    "objectID": "capture.html",
+    "href": "capture.html",
+    "title": "Capture",
+    "section": "",
+    "text": "WarningWork in progress\n\n\n\nResults and method for this stage are not yet available. This page will be filled in as the work progresses.",
+    "crumbs": [
+      "Pipeline stages",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Capture</span>"
+    ]
+  },
+  {
+    "objectID": "detection.html",
+    "href": "detection.html",
+    "title": "Detection",
+    "section": "",
+    "text": "WarningWork in progress\n\n\n\nResults and method for this stage are not yet available. This page will be filled in as the work progresses.",
+    "crumbs": [
+      "Pipeline stages",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Detection</span>"
+    ]
+  },
+  {
+    "objectID": "state.html",
+    "href": "state.html",
+    "title": "State",
+    "section": "",
+    "text": "WarningWork in progress\n\n\n\nResults and method for this stage are not yet available. This page will be filled in as the work progresses.",
+    "crumbs": [
+      "Pipeline stages",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>State</span>"
+    ]
+  },
+  {
+    "objectID": "rl.html",
+    "href": "rl.html",
+    "title": "RL",
+    "section": "",
+    "text": "WarningWork in progress\n\n\n\nResults and method for this stage are not yet available. This page will be filled in as the work progresses.",
+    "crumbs": [
+      "Pipeline stages",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>RL</span>"
+    ]
+  },
+  {
+    "objectID": "inputs.html",
+    "href": "inputs.html",
+    "title": "Inputs",
+    "section": "",
+    "text": "WarningWork in progress\n\n\n\nResults and method for this stage are not yet available. This page will be filled in as the work progresses.",
+    "crumbs": [
+      "Pipeline stages",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Inputs</span>"
+    ]
+  },
+  {
+    "objectID": "roadmap.html",
+    "href": "roadmap.html",
+    "title": "Roadmap",
+    "section": "",
+    "text": "Stages and status\nResults for each stage are reported on its tab as they become available.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Roadmap</span>"
+    ]
+  },
+  {
+    "objectID": "roadmap.html#stages-and-status",
+    "href": "roadmap.html#stages-and-status",
+    "title": "Roadmap",
+    "section": "",
+    "text": "#\nStage\nStatus\n\n\n\n\n1\nCapture (emulator + frame grab)\nWork in progress\n\n\n2\nPerception (detection + state)\nUnder evaluation (priority)\n\n\n3\nDecision (RL policy)\nWork in progress\n\n\n4\nInputs + reward / training loop\nWork in progress",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Roadmap</span>"
+    ]
+  },
+  {
+    "objectID": "roadmap.html#open-questions",
+    "href": "roadmap.html#open-questions",
+    "title": "Roadmap",
+    "section": "Open questions",
+    "text": "Open questions\n\nStatic terrain. The detector recovers mobile entities but not bushes or walls. Whether static map layout can be sourced per map, rather than detected from pixels, is open (see Capture).\nBan risk. Emulator and automated play may be flagged by Supercell. Tracked as a risk, not yet mitigated (see Inputs).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Roadmap</span>"
+    ]
+  },
+  {
+    "objectID": "roadmap.html#data-and-licensing",
+    "href": "roadmap.html#data-and-licensing",
+    "title": "Roadmap",
+    "section": "Data and licensing",
+    "text": "Data and licensing\nDataset: bloxxy/brawl-stars-dataset (10 classes, MIT). Project code is under the repository LICENSE.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Roadmap</span>"
+    ]
+  }
+]
