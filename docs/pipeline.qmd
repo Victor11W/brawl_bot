@@ -1,0 +1,31 @@
+---
+title: "General pipeline"
+---
+
+This final part ties the two halves together — **perception** (detection and
+analysis) and **decision** (reinforcement learning) — into the full system. It
+comes last on purpose, once both problems are understood on their own.
+
+## The pipeline under study
+
+The agent is organised along **three stages** that turn a frame into an action.
+
+```{mermaid}
+flowchart LR
+    subgraph SIM[1. Capture]
+        A[Emulator] --> B[Screen capture]
+    end
+    subgraph DET[2. Perception]
+        C[Object detection<br/>YOLOv11] --> D[State restructuring]
+    end
+    subgraph AI[3. Decision]
+        E[RL policy]
+    end
+
+    B -->|frame| C
+    D -->|state| E
+```
+
+At run time the stages form a **closed perception-action loop**: each action
+changes the game, producing the next frame, and the change in frames is the
+reward signal that trains the policy.

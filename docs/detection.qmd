@@ -1,10 +1,13 @@
 ---
-title: "Detection"
-subtitle: "Object detection with YOLOv11 (axis 2)"
+title: "Detection and analysis"
 ---
 
-::: {.callout-warning}
+This part covers the **perception** problem: detecting the relevant objects in
+each frame and turning them into usable information. Because public datasets for
+the game are limited, the focus is on **techniques to maximize detection
+accuracy**, with all training and inference kept **local**.
+
+::: {.callout-note}
 ## Work in progress
-Results and method for this stage are not yet available. This page will be
-filled in as the work progresses.
+The sections of this part will be added as the work progresses.
 :::
