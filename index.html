@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Victor Woelffel">
-<meta name="dcterms.date" content="2026-06-18">
+<meta name="dcterms.date" content="2026-06-19">
 
 <title>BROWT</title>
 <style>
@@ -35,7 +35,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./architecture.html" rel="next">
+<link href="./detection.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -73,10 +73,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta name="mermaid-theme" content="neutral">
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="custom.css">
@@ -91,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">BROWT</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -125,18 +121,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">BROWT</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./architecture.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Architecture</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Pipeline stages</span></a>
+ <span class="menu-text">Detection and analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -144,34 +135,30 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./capture.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Capture</span></a>
+  <a href="./detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Detection and analysis</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Reinforcement learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./detection.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Detection</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./state.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">State</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./rl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">RL</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./inputs.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Inputs</span></a>
+  <a href="./rl.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reinforcement learning</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Roadmap</span></a>
+  <a href="./pipeline.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">General pipeline</span></a>
   </div>
 </li>
     </ul>
@@ -184,10 +171,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#hypothesis" id="toc-hypothesis" class="nav-link" data-scroll-target="#hypothesis">Hypothesis</a></li>
-  <li><a href="#method-in-one-diagram" id="toc-method-in-one-diagram" class="nav-link" data-scroll-target="#method-in-one-diagram">Method in one diagram</a></li>
-  <li><a href="#how-to-read-this-report" id="toc-how-to-read-this-report" class="nav-link" data-scroll-target="#how-to-read-this-report">How to read this report</a></li>
+  <li><a href="#an-educational-research-project" id="toc-an-educational-research-project" class="nav-link active" data-scroll-target="#an-educational-research-project">An educational research project</a>
+  <ul class="collapse">
+  <li><a href="#perception-detecting-objects-in-the-frame" id="toc-perception-detecting-objects-in-the-frame" class="nav-link" data-scroll-target="#perception-detecting-objects-in-the-frame">1. Perception — detecting objects in the frame</a></li>
+  <li><a href="#decision-acting-on-unlabeled-information" id="toc-decision-acting-on-unlabeled-information" class="nav-link" data-scroll-target="#decision-acting-on-unlabeled-information">2. Decision — acting on unlabeled information</a></li>
+  </ul></li>
+  <li><a href="#how-this-documentation-is-organized" id="toc-how-this-documentation-is-organized" class="nav-link" data-scroll-target="#how-this-documentation-is-organized">How this documentation is organized</a></li>
   </ul>
 </nav>
     </div>
@@ -197,7 +186,6 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">BROWT</h1>
-<p class="subtitle lead">Learning to play Brawl Stars from pixels alone</p>
 </div>
 
 
@@ -214,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 18, 2026</p>
+      <p class="date">June 19, 2026</p>
     </div>
   </div>
   
@@ -226,43 +214,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>This report documents the design and evaluation of an agent that plays Brawl Stars <strong>using only what is on the screen</strong> — no access to the game’s internal state. A frame is captured, objects are detected, the detections are turned into a state, and a reinforcement-learning policy chooses an action that is sent back to the game. The change in the resulting frames is the reward.</p>
-<p>The aim of these pages is <strong>scientific validation</strong>: to expose the results obtained at each stage and the method used to obtain them, rather than to teach how to operate the tool.</p>
-<ul>
-<li><strong>Task studied:</strong> Solo Showdown (MVP scope).</li>
-<li><strong>Approach:</strong> perception (YOLOv11) → state → reinforcement learning, closed in a perception-action loop.</li>
-<li><strong>Status:</strong> the perception stage is under evaluation; later stages are work in progress and will be reported as results arrive.</li>
-</ul>
+<section id="an-educational-research-project" class="level2">
+<h2 class="anchored" data-anchor-id="an-educational-research-project">An educational research project</h2>
+<p>BROWT is, above all, an <strong>educational research project</strong>. The goal is not a finished tool but to study — hands on — the hard problems behind an agent that plays Brawl Stars from the screen alone, with no access to the game’s internal state.</p>
+<p>Two problems are deliberately pushed in depth, because they are the most challenging and the most instructive.</p>
+<section id="perception-detecting-objects-in-the-frame" class="level3">
+<h3 class="anchored" data-anchor-id="perception-detecting-objects-in-the-frame">1. Perception — detecting objects in the frame</h3>
+<p>Identifying the relevant objects (brawlers, gems, …) in each frame. Public datasets for this game are <strong>limited</strong>, so a large part of the work is studying and comparing <strong>techniques that push detection accuracy as far as possible</strong>, with <strong>all training and inference kept local</strong> — no cloud services.</p>
 </section>
-<section id="hypothesis" class="level2">
-<h2 class="anchored" data-anchor-id="hypothesis">Hypothesis</h2>
-<p>A purely vision-based agent, with no privileged access to game internals, can learn a useful Solo Showdown policy if the perception stage produces a state that is accurate and stable enough for a reinforcement-learning policy to act on.</p>
+<section id="decision-acting-on-unlabeled-information" class="level3">
+<h3 class="anchored" data-anchor-id="decision-acting-on-unlabeled-information">2. Decision — acting on unlabeled information</h3>
+<p>Choosing what to do from the perceived state, <strong>without labels</strong> telling us the correct action. This is a <strong>reinforcement-learning</strong> problem: the agent must learn a policy from its own experience and a reward signal.</p>
 </section>
-<section id="method-in-one-diagram" class="level2">
-<h2 class="anchored" data-anchor-id="method-in-one-diagram">Method in one diagram</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    F[Frame] --&gt;|detection -&gt; state| G[RL policy]
-    G --&gt;|action| H[Game]
-    H --&gt; F
-    H -.reward.-&gt; G
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Each stage is studied on its own tab: how it was built (method) and what it achieves (results). The <a href="./architecture.html">Architecture</a> tab gives the full picture; the per-stage tabs report the evidence.</p>
 </section>
-<section id="how-to-read-this-report" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-read-this-report">How to read this report</h2>
-<p>The tabs follow the perception-to-action pipeline. Stages still being evaluated are marked <strong>work in progress</strong> and will be filled in as their results become available.</p>
+<section id="how-this-documentation-is-organized" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-documentation-is-organized">How this documentation is organized</h2>
+<p>The documentation mirrors these two axes:</p>
+<ol type="1">
+<li><strong>Detection and analysis</strong> — the perception problem above.</li>
+<li><strong>Reinforcement learning</strong> — the decision problem above.</li>
+</ol>
+<p>Each part is split into its own sections, added as the work progresses. A final part presents the <strong>general pipeline</strong> that ties everything together — deliberately placed last, once both halves are understood.</p>
 
 
 </section>
@@ -672,8 +644,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./architecture.html" class="pagination-link" aria-label="Architecture">
-        <span class="nav-page-text"><span class="chapter-title">Architecture</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./detection.html" class="pagination-link" aria-label="Detection and analysis">
+        <span class="nav-page-text"><span class="chapter-title">Detection and analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
