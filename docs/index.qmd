@@ -1,49 +1,37 @@
 ---
-title: "BROWT"
-subtitle: "Learning to play Brawl Stars from pixels alone"
+title: "Introduction"
 ---
 
-## Abstract
+## An educational research project
 
-This report documents the design and evaluation of an agent that plays Brawl
-Stars **using only what is on the screen** — no access to the game's internal
-state. A frame is captured, objects are detected, the detections are turned into
-a state, and a reinforcement-learning policy chooses an action that is sent back
-to the game. The change in the resulting frames is the reward.
+BROWT is, above all, an **educational research project**. The goal is not a
+finished tool but to study — hands on — the hard problems behind an agent that
+plays Brawl Stars from the screen alone, with no access to the game's internal
+state.
 
-The aim of these pages is **scientific validation**: to expose the results
-obtained at each stage and the method used to obtain them, rather than to teach
-how to operate the tool.
+Two problems are deliberately pushed in depth, because they are the most
+challenging and the most instructive.
 
-- **Task studied:** Solo Showdown (MVP scope).
-- **Approach:** perception (YOLOv11) → state → reinforcement learning, closed in
-  a perception-action loop.
-- **Status:** the perception stage is under evaluation; later stages are work in
-  progress and will be reported as results arrive.
+### 1. Perception — detecting objects in the frame
 
-## Hypothesis
+Identifying the relevant objects (brawlers, gems, ...) in each frame. Public
+datasets for this game are **limited**, so a large part of the work is studying
+and comparing **techniques that push detection accuracy as far as possible**,
+with **all training and inference kept local** — no cloud services.
 
-A purely vision-based agent, with no privileged access to game internals, can
-learn a useful Solo Showdown policy if the perception stage produces a state
-that is accurate and stable enough for a reinforcement-learning policy to act
-on.
+### 2. Decision — acting on unlabeled information
 
-## Method in one diagram
+Choosing what to do from the perceived state, **without labels** telling us the
+correct action. This is a **reinforcement-learning** problem: the agent must
+learn a policy from its own experience and a reward signal.
 
-```{mermaid}
-flowchart LR
-    F[Frame] -->|detection -> state| G[RL policy]
-    G -->|action| H[Game]
-    H --> F
-    H -.reward.-> G
-```
+## How this documentation is organized
 
-Each stage is studied on its own tab: how it was built (method) and what it
-achieves (results). The [Architecture](architecture.qmd) tab gives the full
-picture; the per-stage tabs report the evidence.
+The documentation mirrors these two axes:
 
-## How to read this report
+1. **Detection and analysis** — the perception problem above.
+2. **Reinforcement learning** — the decision problem above.
 
-The tabs follow the perception-to-action pipeline. Stages still being evaluated
-are marked **work in progress** and will be filled in as their results become
-available.
+Each part is split into its own sections, added as the work progresses. A final
+part presents the **general pipeline** that ties everything together —
+deliberately placed last, once both halves are understood.

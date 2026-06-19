@@ -1,10 +1,12 @@
 ---
-title: "RL"
-subtitle: "Reinforcement-learning decision AI (axis 3)"
+title: "Reinforcement learning"
 ---
 
-::: {.callout-warning}
+This part covers **decision-making from unlabeled information**: learning a
+policy that maps the perceived state to an action, with no labels telling us the
+right move — only experience and a reward signal.
+
+::: {.callout-note}
 ## Work in progress
-Results and method for this stage are not yet available. This page will be
-filled in as the work progresses.
+The sections of this part will be added as the work progresses.
 :::

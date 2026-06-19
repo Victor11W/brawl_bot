@@ -11,15 +11,13 @@ book:
 
   chapters:
     - index.qmd
-    - architecture.qmd
-    - part: "Pipeline stages"
+    - part: "Detection and analysis"
       chapters:
-        - capture.qmd
         - detection.qmd
-        - state.qmd
+    - part: "Reinforcement learning"
+      chapters:
         - rl.qmd
-        - inputs.qmd
-    - roadmap.qmd
+    - pipeline.qmd
 
 format:
   html:
